@@ -81,5 +81,13 @@ const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
 // TODO: 
 // Three Js - Camera and Interaction
 // D3 - Force redirected graph algo
-// Media pipe - Hand Motion tracking and movement - Navigate space
+        // Weight connection based on distance (country or city)
+        // Clusters Node area based on user location
+// Media pipe - Hand Motion tracking and movement - Navigate space and clicking
 // Socket - Send Pulse Signal with other users
+// Other Feat
+   // auto gen Node per user
+   // Gen unique session token - store on storage
+   // add node tag and simple textarea for stories Each node
+   // Slow node decay
+

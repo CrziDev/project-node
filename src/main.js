@@ -36,9 +36,3 @@ document.body.appendChild( renderer.domElement );
 
 const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
 
-
-// TODO: 
-// Three Js - Camera and Interaction
-// D3 - Force redirected graph algo
-// Media pipe - Hand Motion tracking and movement - Navigate space
-// Socket - Send Pulse Signal 
