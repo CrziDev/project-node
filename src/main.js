@@ -1,8 +1,9 @@
 import * as THREE from 'three'
 import {mockData} from './mockData.js'
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import {OrbitControls} from "three/examples/jsm/controls/OrbitControls.js";
 import {createNodeMesh,updateNodes} from './objects/nodes.js'
 import {innitSimulation} from './simulation.js'
+import * as utils from './utils/helpers.js'
 
 
 // Scene
@@ -24,8 +25,11 @@ const controls = new OrbitControls( camera, renderer.domElement );
 controls.zoomSpeed = 2.0;
 controls.enableZoom = true;
 
-const data = mockData;
-const nodes = createNodeMesh(data);
+// Main
+const individuals = mockData;
+const countries = utils.getCountries(mockData)
+
+const nodes = createNodeMesh([...individuals,...countries]);
 
 [...nodes].forEach(object => scene.add(object))
 

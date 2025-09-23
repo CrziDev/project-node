@@ -15,3 +15,7 @@ export function generateNodes(number, range, cameraPosition) {
     )
   }));
 }
+
+export function getCountries(data) {
+    return Map.groupBy(data,(individual) => individual.country)
+}
