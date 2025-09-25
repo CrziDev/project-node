@@ -1,7 +1,8 @@
 import * as THREE from 'three'
-import {mockData} from './mockData.js'
+import {users,countries} from './mockData.js'
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls.js";
-import {createNodeMesh,updateNodes} from './objects/nodes.js'
+import {createNodeMeshes,updateNodes} from './objects/nodes.js'
+import {createLinkMeshes,updateLinks} from './objects/links.js'
 import {innitSimulation} from './simulation.js'
 import * as utils from './utils/helpers.js'
 
@@ -15,7 +16,7 @@ const camera = new THREE.PerspectiveCamera(
     0.1,
     10000,
 );
-camera.position.z = 200;
+camera.position.z = 1000;
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
@@ -26,19 +27,22 @@ controls.zoomSpeed = 2.0;
 controls.enableZoom = true;
 
 // Main
-const individuals = mockData;
-const countries = utils.getCountries(mockData)
+const nodes = utils.createNodes(users,countries);
+const links = utils.identifyLinks(users,nodes)
 
-const nodes = createNodeMesh([...individuals,...countries]);
+const nodeMeshes = createNodeMeshes(nodes);
+const lineMeshes = createLinkMeshes(links);
 
-[...nodes].forEach(object => scene.add(object))
+[...nodeMeshes,...lineMeshes].forEach(object => scene.add(object))
 
-innitSimulation(nodes)
+innitSimulation(nodes,links)
 
 function animate(){
     requestAnimationFrame(animate); 
 
-    updateNodes(nodes)
+    updateNodes(nodeMeshes)
+    
+    updateLinks(lineMeshes)
 
     renderer.render(scene, camera);
 }

@@ -1,6 +1,10 @@
 import * as THREE from 'three'
 
-export function createNodeMesh(nodes){
+export function createNode(data){
+
+}
+
+export function createNodeMeshes(nodes){
   let nodeMeshes = [];
 
   nodes.forEach(function(node){
@@ -8,16 +12,18 @@ export function createNodeMesh(nodes){
       new THREE.SphereGeometry(10, 50, 50),
       new THREE.MeshBasicMaterial( { color: 0xffffff } ),
     );
+    
+    nodeMesh.userData = node;
     nodeMeshes.push(nodeMesh); 
   });
   
   return nodeMeshes;
 }
 
-export function updateNodes(nodes){
-
-      nodes.forEach((node, index) => {
-          node.position.set(node.x, node.y, node.z);
-      }); 
+export function updateNodes(nodeMeshes){
+    nodeMeshes.forEach((node, index) => {
+        node.position.set(node.userData.x, node.userData.y, node.userData.z);
+    }); 
 
 }
+
