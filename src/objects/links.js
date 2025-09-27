@@ -27,9 +27,7 @@ export function createLinkMeshes(links){
 export function updateLinks(lineMeshes) {
 
   
-  
     lineMeshes.forEach(lineMesh => {
-        console.log(lineMesh);
         
         const positions = lineMesh.geometry.attributes.position.array;
 

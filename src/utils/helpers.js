@@ -9,11 +9,14 @@ export function createNodes(users,countries){
       
       nodes.push({
         id:code,
-        name:countryMap.get(code)
+        name:countryMap.get(code),
+        isCountry:true
       }),
-      users.forEach(user => 
-        nodes.push(user),
-      )
+      
+      users.forEach(user => {
+        user.isCountry = false,
+        nodes.push(user);
+      })
   )
   
   return nodes;
@@ -23,13 +26,13 @@ export function createNodes(users,countries){
 export function identifyLinks(users,nodes){
   const links = []
 
-  const nodeMap = new Map(nodes.map(n => [n.id,n]));
+  // const nodeMap = new Map(nodes.map(n => [n.id,n]));
   
-  const groupByCountry = Map.groupBy(users,(user) => user.country);
+  // const groupByCountry = Map.groupBy(users,(user) => user.country);
 
-  groupByCountry.forEach((users,code) => 
-     users.forEach(user => links.push({source:nodeMap.get(code),target:nodeMap.get(user.id)}))
-  )
+  // groupByCountry.forEach((users,code) => 
+  //    users.forEach(user => links.push({source:nodeMap.get(code),target:nodeMap.get(user.id)}))
+  // )
   
   return links;
 }

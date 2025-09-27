@@ -35,7 +35,7 @@ const lineMeshes = createLinkMeshes(links);
 
 [...nodeMeshes,...lineMeshes].forEach(object => scene.add(object))
 
-innitSimulation(nodes,links)
+innitSimulation(nodes,links,countries)
 
 function animate(){
     requestAnimationFrame(animate); 
