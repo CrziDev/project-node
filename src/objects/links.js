@@ -1,5 +1,19 @@
 import * as THREE from 'three'
 
+export function identifyLinks(users,nodes){
+  const links = []
+
+  // const nodeMap = new Map(nodes.map(n => [n.id,n]));
+  
+  // const groupByCountry = Map.groupBy(users,(user) => user.country);
+
+  // groupByCountry.forEach((users,code) => 
+  //    users.forEach(user => links.push({source:nodeMap.get(code),target:nodeMap.get(user.id)}))
+  // )
+  
+  return links;
+}
+
 export function createLinkMeshes(links){
   let lineMeshes = [];
 
@@ -31,7 +45,6 @@ export function updateLinks(lineMeshes) {
         
         const positions = lineMesh.geometry.attributes.position.array;
 
-        // console.log(positions);
         
         positions[0] = lineMesh.link.source.x;
         positions[1] = lineMesh.link.source.y;
