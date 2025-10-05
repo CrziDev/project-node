@@ -160,6 +160,7 @@ window.addEventListener('click',(event)=>{
 
     }
 
+
 })
 
 // window.addEventListener("mousemove", (event) => {
@@ -215,8 +216,6 @@ window.addEventListener('click',(event)=>{
 
 
 // 
-
-
 
 controls.update();
 function animate() {

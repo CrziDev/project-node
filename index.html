@@ -4,31 +4,38 @@
   <meta charset="utf-8">
   <title>Visual Node</title>
   <style>
-    body { 
+    body {
         margin: 0;
-        background-color: black;
+        padding: 0;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        font-family: 'Arial', sans-serif;
+        overflow: hidden;
+        height: 100vh;
+        color: white;
     }
   </style>
  </head> 
  <body>
   <script type="module" src="./src/main.js"></script>
 
-   <div id="descriptionBox" style="
-    position: absolute;
-    display: none;
-    width: 280px;
-    padding: 18px;
-    background: rgba(25, 25, 40, 0.8);
-    border: 1px solid rgba(120, 200, 255, 0.4);
-    border-radius: 18px;
-    color: #eafaff;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    box-shadow: 0 0 25px rgba(0, 180, 255, 0.4);
-    backdrop-filter: blur(10px);
-    z-index: 10;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transform: scale(0.95);
-">
+
+   <div id="container">
+       <div id="descriptionBox" style="
+            position: absolute;
+            display: none;
+            width: 280px;
+            padding: 18px;
+            background: rgba(25, 25, 40, 0.8);
+            border: 1px solid rgba(120, 200, 255, 0.4);
+            border-radius: 18px;
+            color: #eafaff;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            box-shadow: 0 0 25px rgba(0, 180, 255, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: scale(0.95);
+        ">
     <input id="meshNickname" placeholder="✨ Your star name..." style="
         width: 100%;
         padding: 6px 10px;
@@ -78,6 +85,7 @@
     onmouseout="this.style.transform='scale(1)'">
         Save ✨
     </button>
+    </div>
 </div>
 
 <style>
