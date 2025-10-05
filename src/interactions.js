@@ -24,6 +24,7 @@ export function interactInnit(camera,scene,nodeMeshes,renderer){
 
 export function handleClick(event){
     
+    objectFound = null
     onPointerMove(event)
 
     raycaster.setFromCamera( pointer, cameraRef );
@@ -36,9 +37,8 @@ export function handleClick(event){
         
         showDescription(objectFound)
     }else{
-        nodeMeshesRef.forEach((element) => element.material.color.set(0xffffff))
         descripBox.style.display = 'none'
-
+        nodeMeshesRef.forEach((element) => (!element.userData.isCountry)?element.material.color.set(0xffffff):'')
     }
 
 }
