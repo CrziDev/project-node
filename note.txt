@@ -1,0 +1,3 @@
+
+
+Scale factor = baseScale * (distanceBetweenObect/distanceWhereObjectisOnBaseScale)

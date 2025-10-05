@@ -58,15 +58,20 @@ export function createNodeMeshes(nodes){
     nodeMesh.userData = node;
     nodeMeshes.push(nodeMesh);
 
-    let labelElement = document.createElement('div')
-    labelElement.id = node.id
-    labelElement.textContent = node.nickname
-    labelElement.style.position = 'absolute'
-    labelElement.style.color = 'white'
-    labelElement.style.zIndex = 10
-    document.body.appendChild(labelElement);
 
-
+    if(node.isCountry == false){
+      let labelElement = document.createElement('div')
+      labelElement.id = node.id
+      labelElement.textContent = node.nickname
+      labelElement.style.position = 'absolute'
+      labelElement.style.display =  'none';
+      labelElement.style.color = 'white'
+      labelElement.style.zIndex = 10
+      labelElement.style.top = 0
+      labelElement.style.left = 0
+      document.body.appendChild(labelElement);
+    }
+      
   });
   
   return nodeMeshes;
@@ -82,41 +87,49 @@ export function updateNodes(nodeMeshes){
 }
 
 function updateLabel(nodeMesh){
-  
+
   let label = document.getElementById(nodeMesh.userData.id)
+
+  if(label == null){
+    return
+  }
 
   worldPosition.setFromMatrixPosition(nodeMesh.matrixWorld)
   worldPosition.y += 45;
 
-  const distance = cameraRef.position.distanceTo(worldPosition);
-
   const projectedPosition = worldPosition.clone();
   projectedPosition.project(cameraRef);
-
   
-  if(projectedPosition.z > 1){
+  
+  const isVisible =
+    projectedPosition.z >= -1 && projectedPosition.z <= 1 &&
+    projectedPosition.x >= -1 && projectedPosition.x <= 1 &&
+    projectedPosition.y >= -1 && projectedPosition.y <= 1;
+    
+  if(!isVisible){
+    label.style.display = 'none';
     return
   }
-  
+
   let x = (projectedPosition.x * 0.5 + 0.5) * window.innerWidth;
   let y = (-projectedPosition.y * 0.5 + 0.5) * window.innerHeight;
-
+  
   const minScale = 0.1;
   const maxScale = 0.8;
-
+  
   const referenceDistance = 1000; 
+  const cameraDistance = cameraRef.position.distanceTo(worldPosition);
   const scale = THREE.MathUtils.clamp(
-    (referenceDistance / distance) * 1,
+    (referenceDistance / cameraDistance) * 1,
     minScale,
     maxScale
   );
   
-
   label.style.display = 'block';
   label.style.left = `${x}px`;
   label.style.top = `${y}px`;
   label.style.transform = `translate(-50%, -50%) scale(${scale})`;
-
+  
 }
 
 

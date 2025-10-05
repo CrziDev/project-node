@@ -49,6 +49,18 @@ export function showDescription(){
         return
     }
 
+    const cameraDistance = cameraRef.position.distanceTo(objectFound.matrixWorld)
+
+
+    const minScale = 0.1;
+    const maxScale = 0.8;
+    const referenceDistance = 1000; 
+    const scale = THREE.MathUtils.clamp(
+    (referenceDistance / cameraDistance) * 1,
+    minScale,
+    maxScale
+    );
+    
     boxPositon.setFromMatrixPosition(objectFound.matrixWorld)
     boxPositon.project(cameraRef)
 
@@ -58,17 +70,14 @@ export function showDescription(){
     descripBox.style.display = 'block'
     descripBox.style.left = `${x}px`;
     descripBox.style.top = `${y}px`;
-    
+    descripBox.style.transform = `translate(-5%, -20%) scale(${scale})`;
 }
 
 function onWindowResize() {
 
     cameraRef.aspect = window.innerWidth / window.innerHeight;
-
     cameraRef.updateProjectionMatrix();
-
     rendererRef.setSize( window.innerWidth, window.innerHeight );
-
 
 }
 

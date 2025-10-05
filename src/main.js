@@ -25,7 +25,6 @@ const controls = new OrbitControls( camera, renderer.domElement );
 controls.zoomSpeed = 6.0;
 controls.enableZoom = true;
 
-// Object Creation
 
 nodeInnit(camera)
 
